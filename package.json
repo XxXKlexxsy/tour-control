@@ -1,0 +1,20 @@
+{
+  "name": "tour-control",
+  "version": "0.1.0",
+  "description": "Tour- und Ladelisten-Optimierung fuer Berufskraftfahrer (PWA, offline-faehig)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "idb": "^8.0.0",
+    "leaflet": "^1.9.4",
+    "tesseract.js": "^5.1.1"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "vite-plugin-pwa": "^0.21.1"
+  }
+}
