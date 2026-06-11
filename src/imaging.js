@@ -23,10 +23,10 @@ export function preprocessToCanvas(img, { leftFraction = 1, contrast = true } = 
   const sw = Math.max(1, Math.round(img.naturalWidth * Math.min(1, Math.max(0.1, leftFraction))))
   const sh = img.naturalHeight
 
-  // Zielbreite ~1500px: kleine Crops hochskalieren, riesige Fotos herunterrechnen
-  const targetW = 1500
+  // Zielbreite ~1800px (hoehere Aufloesung -> schaerfere Buchstaben, weniger OCR-Muell)
+  const targetW = 1800
   let scale = targetW / sw
-  scale = Math.max(0.5, Math.min(scale, 2.2))
+  scale = Math.max(0.5, Math.min(scale, 2.5))
 
   const cw = Math.round(sw * scale)
   const ch = Math.round(sh * scale)

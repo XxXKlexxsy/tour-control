@@ -12,6 +12,13 @@ async function getWorker(onProgress) {
       }
     }
   })
+  // PSM 4 = einzelne Textspalte mit unterschiedlichen Schriftgroessen (passt zur
+  // zugeschnittenen Empfaenger-Spalte: grosser Name, kleinere Adresszeilen).
+  // Wortabstaende erhalten -> Zeilen verschmelzen seltener.
+  await _worker.setParameters({
+    tessedit_pageseg_mode: '4',
+    preserve_interword_spaces: '1'
+  })
   return _worker
 }
 
