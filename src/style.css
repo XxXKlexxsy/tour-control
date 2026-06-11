@@ -134,6 +134,24 @@ textarea.input { resize: vertical; }
 .progress-bar { height: 8px; background: var(--bg2); border-radius: 6px; overflow: hidden; margin-top: 16px; }
 .progress-bar .bar { height: 100%; width: 0; background: var(--primary); transition: width .2s; }
 
+/* ---------- Bild-Vorbereitung (Multi-Upload + Zuschnitt) ---------- */
+.prep-wrap { margin-top: 16px; }
+.small-link { display: block; margin: 12px auto 0; }
+.thumbs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+.thumb { position: relative; flex: none; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--bg2); }
+.thumb-canvas { display: block; height: 130px; width: auto; }
+.thumb-num { position: absolute; left: 5px; top: 5px; background: var(--primary); color: #fff; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; }
+.thumb-x { position: absolute; right: 4px; top: 4px; background: rgba(15,23,42,.8); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; font-size: 12px; }
+.crop-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; margin: 12px 0; }
+.crop-head { margin-bottom: 8px; }
+.crop-preview { display: flex; justify-content: center; }
+.crop-canvas { max-width: 100%; border-radius: 8px; border: 1px solid var(--line); }
+.slider-row { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.slider { flex: 1; accent-color: var(--primary); height: 28px; }
+.check-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; cursor: pointer; }
+.check-row input { width: 18px; height: 18px; accent-color: var(--primary); }
+.btn.wide { width: 100%; margin-top: 4px; }
+
 .stop-edit-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; }
 .stop-edit-head { display: flex; align-items: center; gap: 8px; }
 .stop-num { width: 26px; height: 26px; flex: none; background: var(--primary); border-radius: 8px; display: grid; place-items: center; font-size: 13px; font-weight: 700; }
