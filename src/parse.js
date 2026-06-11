@@ -30,7 +30,8 @@ function isNoise(line) {
 function makeStop(name, street, plz, city, raw) {
   return {
     id: 's_' + plz + '_' + String(name).replace(/\W/g, '').slice(0, 8) + '_' + Math.random().toString(36).slice(2, 6),
-    name: cleanLine(name) || '(unbekannter Kunde)',
+    // ohne Firmennamen (Privatkunde) den Stopp ueber die Adresse identifizieren
+    name: cleanLine(name) || cleanLine(street) || '(unbekannter Kunde)',
     street: cleanLine(street),
     plz,
     city: cleanLine(city),
@@ -66,10 +67,17 @@ export function parseLoadingList(rawText) {
     const top = streetIdx >= 0 ? streetIdx - 1 : i - 1
     let name = ''
     for (let j = top; j >= Math.max(0, top - 2); j--) {
+      // eine Ortszeile ist die Grenze zum vorherigen Stopp -> Suche hier beenden
+      if (CITY_RE.test(lines[j])) break
       if (isNoise(lines[j]) || looksLikeStreet(lines[j])) continue
       name = lines[j]
       break
     }
+
+    // Privatkunden: keine Firmenzeile -> die Adresse landet im Namensfeld und die Strasse
+    // bleibt leer. Wenn der "Name" eine Hausnummer enthaelt, ihn zusaetzlich als Strasse
+    // verwenden, damit der Stopp geortet werden kann.
+    if (!street && /\d/.test(name)) street = name
 
     stops.push(makeStop(name, street, plz, city, [name, street, lines[i]].filter(Boolean).join(' · ')))
   }

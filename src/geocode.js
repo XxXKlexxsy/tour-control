@@ -13,8 +13,11 @@ async function rateLimit() {
   _lastCall = Date.now()
 }
 
-function buildQuery({ street, plz, city }) {
-  return [street, [plz, city].filter(Boolean).join(' ')].filter(Boolean).join(', ')
+function buildQuery({ street, plz, city, name }) {
+  // Strasse bevorzugen; fehlt sie (z.B. Privatkunde mit Adresse im Namensfeld),
+  // ersatzweise den Namen als Adresszeile verwenden.
+  const line1 = street && street.trim() ? street : (name || '')
+  return [line1, [plz, city].filter(Boolean).join(' ')].filter(Boolean).join(', ')
 }
 
 // Liefert {lat, lon} oder null. Wirft bei fehlendem Netz nicht, sondern gibt null zurueck.

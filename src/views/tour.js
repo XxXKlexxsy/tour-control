@@ -94,7 +94,7 @@ export async function renderTour(root, [id]) {
       i++
       btn.textContent = `Adressen suchen … ${i}/${need.length}`
       const c = customers[s.customerId]
-      const res = await geocode({ street: s.street, plz: s.plz, city: s.city })
+      const res = await geocode({ name: s.name, street: s.street, plz: s.plz, city: s.city })
       if (res && c) {
         await setCustomerCoords(c.id, res.lat, res.lon)
         c.lat = res.lat; c.lon = res.lon
